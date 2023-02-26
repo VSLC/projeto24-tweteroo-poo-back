@@ -1,4 +1,5 @@
 import { tweets, usuarios } from "../databaseArrays/database.js";
+
 export function createTweetService(tweet, username) {
   if (!username || !tweet) {
     return res.status(400).send("Todos os campos são obrigatórios!");
