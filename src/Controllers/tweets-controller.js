@@ -1,9 +1,4 @@
-import {
-  createTweetService,
-  getTweetService,
-  limitTweetsService,
-} from "../Services/tweets-service.js";
-
+import tweetService from "../Services/tweets-service.js";
 import { tweets } from "../databaseArrays/database.js";
 
 export default class tweetsClass {
@@ -11,7 +6,10 @@ export default class tweetsClass {
   async postTweets(req, res) {
     try {
       const { tweet, username } = req.body;
-      const createTweet = await createTweetService(tweet, username);
+      const createTweet = await new tweetService().createTweetService(
+        tweet,
+        username
+      );
 
       res.status(201).send("OK, seu tweet foi criado");
     } catch (error) {
@@ -21,7 +19,7 @@ export default class tweetsClass {
   async getTweets(req, res) {
     try {
       const { username } = req.params;
-      const getTweets = await getTweetService(username);
+      const getTweets = await new tweetService().getTweetService(username);
 
       res.status(200).send(getTweets);
     } catch (error) {
@@ -31,7 +29,7 @@ export default class tweetsClass {
   async limitTweets(req, res) {
     try {
       const { page } = req.query;
-      const limitTweets = await limitTweetsService(page);
+      const limitTweets = await new tweetService().limitTweetsService(page);
 
       const limite = 10;
       const start = (page - 1) * limite;
@@ -46,9 +44,3 @@ export default class tweetsClass {
     }
   }
 }
-
-export async function postTweets(req, res) {}
-
-export async function getTweets(req, res) {}
-
-export async function limitTweets(req, res) {}

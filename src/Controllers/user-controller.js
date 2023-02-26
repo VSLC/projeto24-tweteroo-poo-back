@@ -5,7 +5,7 @@ export default class usersClass {
   async postUser(req, res) {
     try {
       const { username, avatar } = req.body;
-      const registryUser = await userService(username, avatar);
+      const registryUser = await new userService().postUser(username, avatar);
 
       res.status(200).send("OK deu tudo certo");
     } catch (error) {

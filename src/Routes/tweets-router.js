@@ -1,8 +1,3 @@
-import {
-  postTweets,
-  getTweets,
-  limitTweets,
-} from "../Controllers/tweets-controller.js";
 import express from "express";
 import tweetsClass from "../Controllers/tweets-controller.js";
 
